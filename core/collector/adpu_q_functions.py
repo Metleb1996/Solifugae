@@ -2,6 +2,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from .writer import writer
+from .. constants import ARTICLES_DIR
 
 all_links = []
 
@@ -33,10 +34,10 @@ def adpu_q_get_all_links(url, header, limit, a = 0):
         if not link in all_links:
             all_links.append(link)
             text, name = adpu_q_parser(link, header)
-            name = os.path.join(os.getcwd(), "articles/"+name+".txt")
+            name = os.getcwd()+ARTICLES_DIR +name+".txt"
             if writer(text, name):
                 print( a, " ))  ", link, "          Added&Created  all:", len(all_links))
-        print(a, " ))  ", link)
+        #print(a, " ))  ", link)
     for link in links:
             adpu_q_get_all_links(link, header, limit=limit, a=a)
     a-=1
