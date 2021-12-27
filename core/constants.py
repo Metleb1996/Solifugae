@@ -2,5 +2,6 @@ header = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM
 ARTICLES_DIR = "/articles/"
 
 letters = "AaBbCcÇçDdEeƏəFfGgĞğHhXxIıİiJjKkQqLlMmNnOoÖöPpRrSsŞşTtUuÜüVvYyZz"
+inwordcharacters = "+=-0123456789"
 pEnds = ".?!"
 wEnds = " ,:;\'\""
