@@ -1,1 +1,1 @@
-from . functions import parsePhrases, parseWords
+from . functions import parsePhrases, parseWords, parseSyllables
