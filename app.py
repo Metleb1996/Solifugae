@@ -1,11 +1,13 @@
 import os
 import sys
 from core.collector import adpu_q_get_all_links
-from core.parser import parsePhrases, parseWords
+from core.parser import parsePhrases, parseWords, parseSyllables
 from core.constants import header, ARTICLES_DIR
+from core.globalfunctions import lover
 
 phrases = set()
 words = set()
+syllables = set()
 
 def merge():
     with open(os.getcwd()+ARTICLES_DIR+"merged.txt", "w") as merged_f:
@@ -27,6 +29,10 @@ def main(step, url, parse):
             phrases.update(parsePhrases(text))
         elif parse == "words":
             words.update(parseWords(text)) 
+        elif parse == "syllables":
+            words.update(parseWords(text))
+            for w in words:
+                syllables.update([lover(x) for x in parseSyllables(w)]) 
     else:
         return False
 
@@ -44,9 +50,14 @@ if __name__ == '__main__':
             if arg == "--parse":
                 parse = sys.argv[sys.argv.index(arg)+1]
     main(step, url, parse)
-    for p in phrases:
-        print(p)
-    for w in words:
-        print(w)
-
+    # if parse == "phrases":
+    #     for p in phrases:
+    #         print(p)
+    # elif parse == "words":
+    #     for w in words:
+    #         print(w)
+    # elif parse == "syllables":
+    #     for s in syllables:
+    #         print(s)
+    print(len(phrases), len(words), len(syllables))
         
